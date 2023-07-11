@@ -9,37 +9,36 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Perform login validation here
-    // Assuming successful login for demonstration purposes
-    navigate('/profile', { state: { name: 'John Doe', age: 25, mobile: '1234567890' } });
+   
+    navigate('/profile');
   };
 
   return (
     <Form onSubmit={handleLogin}>
       <h1>Login Page</h1>
-      <Form.Group controlId="email">
+      <Form.Group controlId='email'>
         <Form.Label>Email address</Form.Label>
         <Form.Control
-          type="email"
-          placeholder="Enter your email"
+          type='email'
+          placeholder='Enter your email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </Form.Group>
 
-      <Form.Group controlId="password">
+      <Form.Group controlId='password'>
         <Form.Label>Password</Form.Label>
         <Form.Control
-          type="password"
-          placeholder="Enter your password"
+          type='password'
+          placeholder='Enter your password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button variant='primary' type='submit'>
         Login
       </Button>
     </Form>

@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext';
 
 const Profilepage = () => {
-  const location = useLocation();
-  const { name, age, mobile } = location.state || {};
-
+  // const location = useLocation();
+  // const { email, age, mobile } = location.state || {};
+  const { userData } = useContext(UserContext);
   const navigate = useNavigate();
   const handleSignOut = () => {
-    // Perform sign out logic here
+    
     navigate('/login');
   };
 
   return (
     <div>
-      {name ? (
+      {userData ? (
         <div>
-          <h2>Welcome, {name}!</h2>
-          <p>Age: {age}</p>
-          <p>Mobile: {mobile}</p>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <h2>Welcome, {userData.name}!</h2>
+          <p>Email: {userData.email}</p>
+          <p>Gender: {userData.gender}</p>
+          <button className='btn btn-success' onClick={handleSignOut}>
+            Sign Out
+          </button>
         </div>
       ) : (
         <p>No user details found.</p>
