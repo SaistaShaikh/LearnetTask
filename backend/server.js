@@ -4,13 +4,19 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const port = 8000;
+require('dotenv').config();
+const dbHost = process.env.DB_HOST;
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
+const dbDatabase = process.env.DB_DATABASE;
+
 app.use(cors());
 app.use(bodyParser.json());
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'learnet',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 
 connection.connect((err) => {
@@ -21,7 +27,6 @@ connection.connect((err) => {
 app.post('/register', (req, res) => {
   const { name, email, password, gender, phoneNumber } = req.body;
 
- 
   const sql = `INSERT INTO users (name, email, password,
     gender,phoneNumber) VALUES (?, ?, ?,?,?)`;
   connection.query(
